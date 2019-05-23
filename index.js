@@ -17,7 +17,7 @@ app.use('/', express.static(
 ));
 app.get('/alert', (req, res) => {
 
-    res.send('attaboy');
+    res.send('warning!');
 
 });
 
