@@ -1,7 +1,7 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
-const fs = require('fs');
+const rootHandler = require('./handlers/root');
+const alertHandler = require('./handlers/alert');
 
 let app = express();
 let port = 3000;
@@ -11,15 +11,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// routes
-app.use('/', express.static(
-  path.join(__dirname, 'html')
-));
-app.get('/alert', (req, res) => {
-
-    res.send('warning!');
-
-});
+app.post('/alert', alertHandler);
+app.get('/', rootHandler);
 
 app.listen(port, ()=>{
   console.log('web server listening on port '+port);
